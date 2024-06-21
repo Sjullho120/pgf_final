@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesse sua conta</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+      body {
+    font-family: Arial, sans-serif; /* Define a família de fontes para toda a página */
+    background-color: #f0f0f0; /* Define a cor de fundo do corpo da página */
+    display: flex; /* Usa layout flexbox para o corpo da página */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    height: 100vh; /* Define a altura do corpo igual à altura da viewport */
+    margin: 0; /* Remove a margem padrão */
+}
+
+.container {
+    background-color: white; /* Define a cor de fundo do container */
+    padding: 20px; /* Adiciona preenchimento dentro do container */
+    border-radius: 8px; /* Arredonda os cantos do container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil ao container */
+    width: 300px; /* Define a largura fixa do container */
+    text-align: center; /* Centraliza o texto dentro do container */
+}
+
+.container h2 {
+    font-size: 24px; /* Define o tamanho da fonte para os títulos dentro do container */
+    margin-bottom: 10px; /* Adiciona margem inferior aos títulos */
+}
+
+.container p {
+    font-size: 14px; /* Define o tamanho da fonte para os parágrafos dentro do container */
+    color: #333; /* Define a cor do texto */
+    margin-bottom: 20px; /* Adiciona margem inferior aos parágrafos */
+    margin-top: 8px; /* Adiciona margem superior aos parágrafos */
+}
+
+.container form {
+    display: flex; /* Usa layout flexbox para os formulários dentro do container */
+    flex-direction: column; /* Organiza os elementos do formulário verticalmente */
+    align-items: flex-start; /* Alinha os elementos do formulário à esquerda */
+}
+
+.container label {
+    margin-bottom: 5px; /* Adiciona margem inferior às etiquetas */
+    font-size: 14px; /* Define o tamanho da fonte para as etiquetas */
+}
+
+.container input {
+    width: 94%; /* Define a largura dos campos de entrada */
+    padding: 8px; /* Adiciona preenchimento dentro dos campos de entrada */
+    margin-bottom: 13px; /* Adiciona margem inferior aos campos de entrada */
+    border: 1px solid #ccc; /* Adiciona uma borda ao redor dos campos de entrada */
+    border-radius: 4px; /* Arredonda os cantos dos campos de entrada */
+    font-size: 14px; /* Define o tamanho da fonte para os campos de entrada */
+}
+
+.container .esqueceu_a_senha {
+    /* align-self: flex-end; */
+    font-size: 12px; /* Define o tamanho da fonte para a classe específica */
+    color: #007bff; /* Define a cor do texto */
+    text-decoration: none; /* Remove o sublinhado do texto */
+    margin-bottom: 20px; /* Adiciona margem inferior */
+    text-align-last: left; /* Alinha o texto à esquerda (para navegadores que suportam) */
+}
+
+.container button[type="submit"] {
+    width: 100%; /* Define a largura do botão para ocupar toda a largura do container */
+    padding: 10px; /* Adiciona preenchimento dentro do botão */
+    background-color: #d73393; /* Define a cor de fundo do botão */
+    color: white; /* Define a cor do texto */
+    border: none; /* Remove a borda padrão do botão */
+    border-radius: 4px; /* Arredonda os cantos do botão */
+    font-size: 16px; /* Define o tamanho da fonte para o texto do botão */
+    cursor: pointer; /* Altera o cursor para ponteiro ao passar por cima */
+    margin-bottom: 20px; /* Adiciona margem inferior ao botão */
+}
+
+.container .login-options {
+    font-size: 14px; /* Define o tamanho da fonte para a classe específica */
+    color: #333; /* Define a cor do texto */
+}
+
+.container .social-buttons {
+    display: flex; /* Usa layout flexbox para os botões sociais */
+    justify-content: center; /* Centraliza os botões sociais horizontalmente */
+    gap: 10px; /* Define o espaçamento entre os botões */
+}
+
+
+ .facebook {
+    
+    width: 58px; /* largura da imagem */
+    height: 32px; /* altura da imagem */
+   
+    background-size: cover; /* ajusta a imagem para cobrir todo o botão */
+    background-repeat: no-repeat; /* garante que a imagem não se repita */
+    border: none; /* remove a borda padrão do botão */
+    cursor: pointer; /* muda o cursor ao passar sobre o botão */
+    /* outros estilos opcionais */
+    color: #fff; /* cor do texto se houver */
+    font-size: 16px; /* tamanho da fonte */
+    margin-left: -29px;
+}
+.google{
+    width: 45px; /* largura da imagem */
+    height: 33px; /* altura da imagem */
+ 
+    background-size: cover; /* ajusta a imagem para cobrir todo o botão */
+    background-repeat: no-repeat; /* garante que a imagem não se repita */
+    border: none; /* remove a borda padrão do botão */
+    cursor: pointer; /* muda o cursor ao passar sobre o botão */
+    /* outros estilos opcionais */
+    color: #fff; /* cor do texto se houver */
+    font-size: 16px; /* tamanho da fonte */
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Acesse sua conta</h2>
+        <p>Novo cliente? Então registre-se <a href="#">aqui</a>.</p>
+        <form>
+            <label for="login">Login *</label>
+            <input type="text" id="login" name="login" placeholder="Insira seu login ou email">
+            
+            <label for="senha">Senha *</label>
+            <input type="password" id="senha" name="senha" placeholder="Insira sua senha">
+            
+            <a href="#" class="esqueceu_a_senha">Esqueci minha senha</a>
+            
+            <button type="submit">Acessar Conta</button>
+        </form>
+        <div class="login-options">
+            
+            <div class="social-buttons">
+                <p>Ou faça login com</p>
+
+                <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ifkv=AS5LTASpLZk5cGE8kQJzZfgmibCAzoMdD6CvlEYxLuGC0oIOHQInx6Jb8JpSyYUVNqHoLrBf-5ektQ&rip=1&sacu=1&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S721736311%3A1718994110302840&ddm=0">
+                <img src="imagens/logogmail.png" class="google" alt="logo_gmail"></a>
+
+                <a href="https://pt-br.facebook.com/"> <img src="imagens/facebook.png" class="facebook" alt="logo_facebook"></a>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- AQUI JAZ OUTROS CODIGOS LIXOS PARA RECICLAR -->
+
+<!-- HTML -->
+<!-- <button class="google"></button>
+                <button class="facebook"></button> -->
+                <!-- CSS -->
+
+                 <!-- .container .social-buttons button {
+                    width: 40px;
+                    height: 34px;
+                    border: none; */
+                    /* border-radius: 50%; */
+                    /* font-size: 20px;
+                    color: white;
+                    cursor: pointer; */
+                /* } */ 
+                
+                /* .container .social-buttons .google { */
+                    /* background-color: #db4437; */
+                    /* background-image: url(imagens/logogmail.png); */
+                /* }  -->
