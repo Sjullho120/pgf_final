@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+           body {
+            font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo da página */
+        }
+
+        .container {
+            width: 90%; /* Define a largura do container como 90% da largura da janela */
+            margin: auto; /* Centraliza o container horizontalmente */
+            padding: 20px; /* Adiciona padding interno ao container */
+            border: 1px solid #ccc; /* Adiciona uma borda ao container */
+        }
+
+        .image-row {
+            display: flex; /* Exibe os itens como flexíveis em linha */
+            justify-content: space-between; /* Distribui os itens com espaçamento entre eles */
+            margin-bottom: 20px; /* Adiciona um espaçamento inferior */
+        }
+
+        .image-item {
+            width: 100px; /* Define a largura de cada item de imagem */
+            height: 100px; /* Define a altura de cada item de imagem */
+            position: relative; /* Define a posição relativa para o item */
+            background-color: #f5f5f5; /* Adiciona cor de fundo para cada item de imagem */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc; /* Adiciona uma borda ao item de imagem */
+        }
+
+        .image-item input[type="file"] {
+            position: absolute; /* Define a posição absoluta para o input de arquivo */
+            width: 100%; /* Define a largura como 100% do item de imagem */
+            height: 100%; /* Define a altura como 100% do item de imagem */
+            opacity: 0; /* Torna o input transparente */
+            cursor: pointer; /* Define o cursor como pointer */
+        }
+
+        .image-item img {
+            max-width: 100%; /* Define a largura máxima da imagem como 100% do item de imagem */
+            max-height: 100%; /* Define a altura máxima da imagem como 100% do item de imagem */
+            object-fit: cover; /* Ajusta a imagem para cobrir o item sem distorção */
+        }
+
+        .form-row {
+            display: flex; /* Exibe os itens como flexíveis em linha */
+           /* justify-content: space-between; /* Distribui os itens com espaçamento entre eles */
+            margin-bottom: 20px; /* Adiciona um espaçamento inferior */
+        }
+
+        .form-group {
+            flex: 1; /* Define a flexibilidade do item para ocupar o máximo de espaço possível */
+            margin-right: 10px; /* Adiciona um espaçamento à direita */
+        }
+
+        .form-group label {
+            display: block; /* Exibe o label como bloco */
+            margin-bottom: 5px; /* Adiciona um espaçamento inferior ao label */
+        }
+
+        .form-group input {
+            width: 90%; /* Define a largura como 100% do grupo de formulário */
+            padding: 8px; /* Adiciona padding interno */
+            border: 1px solid #ccc; /* Adiciona uma borda */
+            border-radius: 4px; /* Adiciona bordas arredondadas */
+            margin-bottom: 10px; /* Adiciona um espaçamento inferior */
+        }
+        .form-group select {
+            width: 97%; /* Define a largura como 100% do grupo de formulário */
+            padding: 8px; /* Adiciona padding interno */
+            border: 1px solid #ccc; /* Adiciona uma borda */
+            border-radius: 4px; /* Adiciona bordas arredondadas */
+            margin-bottom: 10px; /* Adiciona um espaçamento inferior */
+        }
+        .form-group.small {
+            flex: 0 0 30%; /* Define a flexibilidade do item como 30% do container */
+        }
+
+        .quantity-container {
+            display: flex; /* Exibe os itens como flexíveis em linha */
+            align-items: center; /* Alinha os itens ao centro verticalmente */
+        }
+
+        .quantity-container input {
+            flex: 3; /* Define a flexibilidade do input para ocupar o máximo de espaço possível */
+            padding: 10px; /* Adiciona padding interno */
+            margin-left: -89px;
+            margin-top: 22px;
+        }
+
+        .quantity-container button {
+            display: inline-block; /* Exibe o botão como bloco inline */
+            margin-left: 5px; /* Adiciona um espaçamento à esquerda */
+            padding: 8px; /* Adiciona padding interno */
+            background-color: black; /* Define a cor de fundo como preta */
+            color: white; /* Define a cor do texto como branca */
+            border: none; /* Remove a borda */
+            border-radius: 4px; /* Adiciona bordas arredondadas */
+            cursor: pointer; /* Define o cursor como pointer */
+            height: 42px; /* Define a altura do botão */
+        }
+
+        .quantity-container button:hover {
+            background-color: #333; /* Define a cor de fundo ao passar o mouse como cinza escuro */
+        }
+
+        #product-form button[type="submit"] {
+            background-color: black; /* Define a cor de fundo como preta */
+            color: white; /* Define a cor do texto como branca */
+            padding: 10px 20px; /* Adiciona padding interno */
+            border: none; /* Remove a borda */
+            border-radius: 4px; /* Adiciona bordas arredondadas */
+            cursor: pointer; /* Define o cursor como pointer */
+        }
+
+        #product-form button[type="submit"]:hover {
+            background-color: #333; /* Define a cor de fundo ao passar o mouse como cinza escuro */
+        }
+
+        .modal {
+            display: none; /* Esconde o modal por padrão */
+            position: fixed; /* Define a posição como fixa */
+            z-index: 1; /* Define a ordem de empilhamento como 1 */
+            left: 0; /* Define a posição à esquerda como 0 */
+            top: 0; /* Define a posição superior como 0 */
+            width: 100%; /* Define a largura como 100% da janela */
+            height: 100%; /* Define a altura como 100% da janela */
+            overflow: auto; /* Adiciona rolagem automática se necessário */
+            background-color: rgba(0,0,0,0.4); /* Define a cor de fundo como preto transparente */
+            padding-top: 60px; /* Adiciona padding superior */
+        }
+
+        .modal-content {
+            background-color: #fefefe; /* Define a cor de fundo como branco */
+            margin: 5% auto; /* Centraliza o modal verticalmente */
+            padding: 20px; /* Adiciona padding interno */
+            border: 1px solid #888; /* Adiciona uma borda */
+            width: 80%; /* Define a largura como 80% do container */
+            max-width: 600px; /* Define a largura máxima como 600px */
+        }
+
+        .close {
+            color: #aaa; /* Define a cor do botão de fechar como cinza claro */
+            float: right; /* Alinha o botão de fechar à direita */
+            font-size: 28px; /* Define o tamanho da fonte */
+            font-weight: bold; /* Define o peso da fonte como negrito */
+        }
+
+        .close:hover, .close:focus {
+            color: black; /* Define a cor ao passar o mouse ou focar como preto */
+            text-decoration: none; /* Remove a decoração do texto */
+            cursor: pointer; /* Define o cursor como pointer */
+        }
+
+        #modal-textarea {
+            width: 100%; /* Define a largura como 100% do container */
+            height: 100px; /* Define a altura como 100px */
+            padding: 10px; /* Adiciona padding interno */
+        }
+
+        .small-group {
+            gap: 30px;
+            display: flex; /* Exibe os itens como flexíveis em linha */
+           /* justify-content: space-between; /* Distribui os itens com espaçamento entre eles */
+        }
+
+        .small-group .form-group {
+            flex: 1; /* Define a flexibilidade do item para ocupar o máximo de espaço possível */
+            margin-right: 10px; /* Adiciona um espaçamento à direita */
+        }
+
+        .small-group .form-group input, .small-group .form-group select, .quantity-container button {
+            width: 100%; /* Define a largura como 100% do grupo de formulário */
+        }
+
+        /* CSS específico para Tamanhos */
+        #tamanhos-group {
+            flex: 0 0 20%; /* Ajuste conforme necessário */
+            margin-right: 10px; /* Espaçamento à direita */
+        }
+
+        /* CSS específico para Cores */
+        #cores-group {
+            flex: 0 0 20%; /* Ajuste conforme necessário */
+            margin-right: 10px; /* Espaçamento à direita */
+        }
+
+        /* CSS específico para Quantidade */
+        #quantidade-group {
+            flex: 0 0 30%; /* Ajuste conforme necessário */
+            display: flex; /* Mantém o input e botão "+" alinhados */
+           /* align-items: center; /* Alinha os itens ao centro verticalmente */
+        }
+
+        /* CSS específico para o botão "+" */
+        #add-field {
+            margin-left: 9px; /* Espaçamento à esquerda */
+            padding: 8px; /* Padding interno */
+            background-color: black; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            border: none; /* Remove borda */
+            border-radius: 4px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de pointer */
+            height: 30px; /* Altura do botão */
+            width: 33px;
+            margin-top: 13px;
+        }
+
+        #add-field:hover {
+            background-color: #333; /* Cor de fundo ao passar o mouse */
+        }
+
+    </style>
+    <title>Formulário de Produto</title>
+</head>
+<body>
+    <div class="container">
+        <div class="image-row">
+            <div class="image-item">
+                <input type="file" id="imagem1" class="image-input">
+                <img id="preview1" src="#" alt="imagem 1">
+            </div>
+            <div class="image-item">
+                <input type="file" id="imagem2" class="image-input">
+                <img id="preview2" src="#" alt="imagem 2">
+            </div>
+            <div class="image-item">
+                <input type="file" id="imagem3" class="image-input">
+                <img id="preview3" src="#" alt="imagem 3">
+            </div>
+            <div class="image-item">
+                <input type="file" id="imagem4" class="image-input">
+                <img id="preview4" src="#" alt="imagem 4">
+            </div>
+            <div class="image-item">
+                <input type="file" id="imagem5" class="image-input">
+                <img id="preview5" src="#" alt="imagem 5">
+            </div>
+        </div>
+        <form id="product-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id-nome">ID do nome:</label>
+                    <input type="text" id="id-nome" name="id-nome">
+                </div>
+                <div class="form-group">
+                    <label for="nome-produto">Nome do produto:</label>
+                    <input type="text" id="nome-produto" name="nome-produto">
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco">
+                </div>
+                <div class="form-group">
+                    <label for="quantidade-total">Quantidade total:</label>
+                    <input type="text" id="quantidade-total" name="quantidade-total">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" name="categoria"  onchange="checkoutro(this)" >
+                        
+                        <!-- Opções de categorias -->
+                       
+                    <option value="Roupas de Cima"> <strong>------Roupas de Cima-----</strong></option>
+                    <option value="Camisetas">Camisetas</option>
+                    <option value="Blusas">Blusas</option>
+                    <option value="Regatas">Regatas</option>
+                    <option value="Tops">Tops</option>
+                    <option value="Camisas">Camisas</option>
+                    <option value="Suéteres">Suéteres</option>
+                    <option value="Cardigãs">Cardigãs</option>
+                    <option value="Blazers">Blazers</option>
+                    <option value="Jaquetas">Jaquetas</option>
+                    <option value="Casacos">Casacos</option>
+                    <option value="Roupas de Baixo">------Roupas de Baixo------</option>
+                    <option value="Calças">Calças</option>
+                    <option value="Jeans">Jeans</option>
+                    <option value="Leggings">Leggings</option>
+                    <option value="Shorts">Shorts</option>
+                    <option value="Saias">Saias</option>
+                    <option value="Calções">Calções</option>
+                    <option value="Vestidos e Macacões">------Vestidos e Macacões-----</option>
+                    <option value="Vestidos Casuais">Vestidos Casuais</option>
+                    <option value="Vestidos de Festa">Vestidos de Festa</option>
+                    <option value="Vestidos de Coquetel">Vestidos de Coquetel</option>
+                    <option value="Macacões">Macacões</option>
+                    <option value="Macacõezinhos (Romper)">Macacõezinhos (Romper)</option>
+                    <option value="Roupas Íntimas">------Roupas Íntimas------</option>
+                    <option value="Sutiãs">Sutiãs</option>
+                    <option value="Calcinhas">Calcinhas</option>
+                    <option value="Cuecas Boxer">Cuecas Boxer</option>
+                    <option value="Corpetes">Corpetes</option>
+                    <option value="Cintas Modeladoras">Cintas Modeladoras</option>
+                    <option value="Bodys">Bodys</option>
+                    <option value="Meias-calças">Meias-calças</option>
+                    <option value="Roupas de Banho">-------Roupas de Banho-----</option>
+                    <option value="Biquínis">Biquínis</option>
+                    <option value="Maiôs">Maiôs</option>
+                    <option value="Saídas de Praia">Saídas de Praia</option>
+                    <option value="Roupas Esportivas">-----Roupas Esportivas------</option>
+                    <option value="Tops de Esporte">Tops de Esporte</option>
+                    <option value="Calças de Yoga">Calças de Yoga</option>
+                    <option value="Shorts de Corrida">Shorts de Corrida</option>
+                    <option value="Jaquetas Esportivas">Jaquetas Esportivas</option>
+                    <option value="Conjuntos de Treino">Conjuntos de Treino</option>
+                    <option value="Roupas de Noite e Lounge">-------Roupas de Noite e Lounge-----</option>
+                    <option value="Pijamas">Pijamas</option>
+                    <option value="Camisolas">Camisolas</option>
+                    <option value="Roupões">Roupões</option>
+                    <option value="Conjuntos de Lingerie">Conjuntos de Lingerie</option>
+                    <option value="Roupas Formais e de Trabalho">------Roupas Formais e de Trabalho-----</option>
+                    <option value="Ternos">Ternos</option>
+                    <option value="Vestidos de Trabalho">Vestidos de Trabalho</option>
+                    <option value="Calças de Alfaiataria">Calças de Alfaiataria</option>
+                    <option value="Blusas de Trabalho">Blusas de Trabalho</option>
+                    <option value="Roupas de Maternidade">-----Roupas de Maternidade-----</option>
+                    <option value="Vestidos de Maternidade">Vestidos de Maternidade</option>
+                    <option value="Calças de Maternidade">Calças de Maternidade</option>
+                    <option value="Blusas de Maternidade">Blusas de Maternidade</option>
+                    <option value="Roupas Tamanho Plus Size">------Roupas Tamanho Plus Size-----</option>
+                    <option value="Vestidos Plus Size">Vestidos Plus Size</option>
+                    <option value="Calças Plus Size">Calças Plus Size</option>
+                    <option value="Blusas Plus Size">Blusas Plus Size</option>
+                    <option value="Acessórios de Roupa">------Acessórios de Roupa-----</option>
+                    <option value="Lenços">Lenços</option>
+                    <option value="Cachecóis">Cachecóis</option>
+                    <option value="Chapéus">Chapéus</option>
+                    <option value="Luvas">Luvas</option>
+                    <option value="Cintos">Cintos</option>
+                    <option value="mais">mais (Digite abaixo)</option>
+                    </select>
+                    <input type="text" id="categoria" style="display: none;" placeholder="Digite a categoria">
+                </div>
+                <div class="form-group">
+                    <label for="material-produto">Material do produto:</label>
+                    <select id="material-produto" name="material-produto" onchange="checkOutro(this)">
+                        <!-- <select id="tecidos"> -->
+                            <option value="">Escolha um tecido...</option>
+                            <option value="algodao">Algodão</option>
+                            <option value="linho">Linho</option>
+                            <option value="seda">Seda</option>
+                            <option value="cetim">Cetim</option>
+                            <option value="veludo">Veludo</option>
+                            <option value="poliester">Poliéster</option>
+                            <option value="chiffon">Chiffon</option>
+                            <option value="jeans">Jeans (Denim)</option>
+                            <option value="tule">Tule</option>
+                            <option value="cetim-algodao">Cetim de Algodão</option>
+                            <option value="flanela">Flanela</option>
+                            <option value="veludo-cotele">Veludo Cotelê</option>
+                            <option value="crepe">Crepe</option>
+                            <option value="la">Lã</option>
+                            <option value="organza">Organza</option>
+                            <option value="outro">Outro (Digite abaixo)</option>
+                        </select>
+                        <input type="text" id="outro-tecido" style="display: none;" placeholder="Digite o nome do tecido">
+                        
+                    
+                </div>
+                <div class="form-group">
+                    <label for="marca-produto">Marca do produto:</label>
+                    <input type="text" id="marca-produto" name="marca-produto">
+                    <!-- <select id="marca-produto" name="marca-produto">
+                        <option value="placeholder">Placeholder</option>
+                    </select> -->
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" readonly>
+                </div>
+            </div>
+            <div class="form-row small-group">
+                <div class="form-group" id="tamanhos-group">
+                    <label for="tamanhos">Tamanhos:</label>
+                    <select id="tamanhos" name="tamanhos">
+                    <option value="Tamanho Único">Tamanho Único</option>
+                    <option value="P">P</option>
+                    <option value="M">M</option>
+                    <option value="G">G</option>
+                    <option value="GG">GG</option>
+                    </select>
+                </div>
+                <div class="form-group" id="cores-group">
+                    <label for="cores">Cores:</label>
+                    <select id="cores" name="cores">
+                        <!-- Opções de cores -->
+                    <option value="Branco">Branco</option>
+                    <option value="Preto">Preto</option>
+                    <option value="Cinza">Cinza</option>
+                    <option value="Marinho">Marinho</option>
+                    <option value="Vermelho">Vermelho</option>
+                    <option value="Amarelo">Amarelo</option>
+                    <option value="Azul">Azul</option>
+                    <option value="Verde">Verde</option>
+                    <option value="Rosa">Rosa</option>
+                    <option value="Roxo">Roxo</option>
+                    <option value="Laranja">Laranja</option>
+                    <option value="Marrom">Marrom</option>
+                    <option value="Bege">Bege</option>
+                    <option value="Creme">Creme</option>
+                    <option value="Areia">Areia</option>
+                    <option value="Marfim">Marfim</option>
+                    <option value="Off-white">Off-white</option>
+                    <option value="Taupe">Taupe</option>
+                    <option value="Caramelo">Caramelo</option>
+                    <option value="Khaki">Khaki</option>
+                    <option value="Rosa Bebê">Rosa Bebê</option>
+                    <option value="Azul Bebê">Azul Bebê</option>
+                    <option value="Lavanda">Lavanda</option>
+                    <option value="Pêssego">Pêssego</option>
+                    <option value="Menta">Menta</option>
+                    <option value="Amarelo Claro">Amarelo Claro</option>
+                    <option value="Bordô">Bordô</option>
+                    <option value="Vinho">Vinho</option>
+                    <option value="Verde Musgo">Verde Musgo</option>
+                    <option value="Azul Petróleo">Azul Petróleo</option>
+                    <option value="Cobre">Cobre</option>
+                    <option value="Ameixa">Ameixa</option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Turquesa">Turquesa</option>
+                    <option value="Coral">Coral</option>
+                    <option value="Magenta">Magenta</option>
+                    <option value="Fúcsia">Fúcsia</option>
+                    <option value="Verde Limão">Verde Limão</option>
+                    <option value="Cítrico">Cítrico</option>
+                    <option value="Azul Elétrico">Azul Elétrico</option>
+                    <option value="Laranja Neon">Laranja Neon</option>
+                    <option value="Dourado">Dourado</option>
+                    <option value="Prateado">Prateado</option>
+                    <option value="Bronze">Bronze</option>
+                    <option value="Cobre Metálico">Cobre Metálico</option>
+                    <option value="Rosa Metálico">Rosa Metálico</option>
+                    <option value="Verde Oliva">Verde Oliva</option>
+                    <option value="Terracota">Terracota</option>
+                    <option value="Ocre">Ocre</option>
+                    <option value="Sépia">Sépia</option>
+                    <option value="Argila">Argila</option>
+                    <option value="Marsala">Marsala</option>
+                    <option value="Millennial Pink">Millennial Pink</option>
+                    <option value="Verde Esmeralda">Verde Esmeralda</option>
+                    <option value="Azul Serenidade">Azul Serenidade</option>
+                    <option value="Ultra Violeta">Ultra Violeta</option>
+                    <option value="Mostarda">Mostarda</option>
+                    <option value="Laranja Queimado">Laranja Queimado</option>
+                    <option value="Nude Rosado">Nude Rosado</option>
+                    <option value="Nude Bege">Nude Bege</option>
+                    <option value="Nude Marrom">Nude Marrom</option>
+                    <option value="Nude Pêssego">Nude Pêssego</option>
+                    </select>
+                </div>
+                <div class="form-group" id="quantidade-group">
+                    <label for="quantidade">Quantidade:</label>
+                    <div class="quantity-container">
+                        <input type="text" id="quantidade" name="quantidade">
+                        <button type="button" id="add-field">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <textarea id="modal-textarea"></textarea>
+            <button id="save-description">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Referências aos elementos do modal e descrição
+            var modal = document.getElementById('modal');
+            var descricaoInput = document.getElementById('descricao');
+            var closeModal = document.getElementsByClassName('close')[0];
+            var saveDescriptionBtn = document.getElementById('save-description');
+            var modalTextarea = document.getElementById('modal-textarea');
+            var addFieldBtn = document.getElementById('add-field');
+            var formRow = document.querySelector('.form-row:last-child');
+
+            // Abre o modal ao clicar no campo de descrição
+            descricaoInput.addEventListener('click', function () {
+                modal.style.display = 'block';
+            });
+
+            // Fecha o modal ao clicar no botão de fechar
+            closeModal.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Salva o texto do modal no campo de descrição
+            saveDescriptionBtn.addEventListener('click', function () {
+                descricaoInput.value = modalTextarea.value;
+                modal.style.display = 'none';
+            });
+
+            // Fecha o modal ao clicar fora dele
+            window.addEventListener('click', function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Adiciona novos campos de quantidade ao clicar no botão "+"
+            addFieldBtn.addEventListener('click', function () {
+                if (document.querySelectorAll('.quantity-container input').length < 10) {
+                    var newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.name = 'quantidade-extra';
+                    newInput.classList.add('extra-field');
+                    newInput.style.marginTop = "10px";
+                    formRow.appendChild(newInput);
+                }
+            });
+
+            // Função para pré-visualizar imagens
+            function readURL(input, previewId) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var preview = document.getElementById(previewId);
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            // Adiciona eventos de mudança para pré-visualizar as imagens
+            document.getElementById('imagem1').addEventListener('change', function () {
+                readURL(this, 'preview1');
+            });
+            document.getElementById('imagem2').addEventListener('change', function () {
+                readURL(this, 'preview2');
+            });
+            document.getElementById('imagem3').addEventListener('change', function () {
+                readURL(this, 'preview3');
+            });
+            document.getElementById('imagem4').addEventListener('change', function () {
+                readURL(this, 'preview4');
+            });
+            document.getElementById('imagem5').addEventListener('change', function () {
+                readURL(this, 'preview5');
+            });
+        });
+
+        // digita o nome do tecido
+        function checkOutro(select) {
+        var input = document.getElementById("outro-tecido");
+        if (select.value === "outro") {
+            input.style.display = "inline-block";
+            input.focus();
+        } else {
+            input.style.display = "none";
+        }
+    }
+
+    // digita o nome do tecido
+    function checkoutro(select) {
+        var input = document.getElementById("categoria-outro");
+        if (select.value === "mais") {
+            input.style.display = "inline-block";
+            input.focus();
+        } else {
+            input.style.display = "none";
+        }
+    }
+    </script>
+</body>
+</html>

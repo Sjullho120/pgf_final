@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f3e9ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #c500d4;
+            
+        }
+        header nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        main {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f3e9ff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .hero-section img {
+            max-width: 50%;
+            height: auto;
+        }
+        .hero-section .hero-text {
+            max-width: 45%;
+        }
+        .hero-section .hero-text h1 {
+            color: #ff0054;
+            font-size: 2em;
+        }
+        .hero-section .hero-text p {
+            margin: 10px 0;
+        }
+        .hero-section .hero-text button {
+            background-color: #c500d4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .featured-collections {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .featured-collections .collection {
+            text-align: center;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .featured-collections .collection img {
+            max-width: 100%;
+            height: auto;
+        }
+        .featured-collections .collection h3 {
+            margin: 10px 0;
+        }
+        .products {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .products .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .products .product {
+            text-align: center;
+            background-color: #fff;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .products .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .products .product h4 {
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #f3e9ff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .men{
+            
+    display: flex; /* Usa layout flexbox para alinhar os links horizontalmente */
+}
+
+.men a {
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    color: #333; /* Cor do texto dos links */
+    margin-right: 15px; /* Espaçamento entre os links */
+    font-size: 16px; /* Tamanho da fonte dos links */
+}
+
+.men a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse sobre os links */
+    color: #007bff; /* Cor do texto dos links ao passar o mouse */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Digital Store</div>
+        <div>
+            <nav class="men">
+                <a href="#">Home</a>
+                <a href="#">Produtos</a>
+                <a href="#">Categorias</a>
+                <a href="#">Meus Pedidos</a>
+            </nav>
+        </div>
+       
+    </header>
+    <main>
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>Queima de estoque Nike 🔥</h1>
+                <p>Consectetur cupidatat exercitation nostrud excepteur do duis tempor ad pariatur...</p>
+                <button>Ver Ofertas</button>
+            </div>
+            <img src="imagens/tenispg.png" alt="Nike Shoe">
+        </section>
+        <section class="featured-collections">
+            <div class="collection">
+                <img src="path/to/supreme-drop.jpg" alt="Novo drop Supreme">
+                <h3>Novo drop Supreme</h3>
+                <button>Comprar</button>
+            </div>
+            <div class="collection">
+                <img src="path/to/adidas-collection.jpg" alt="Coleção Adidas">
+                <h3>Coleção Adidas</h3>
+                <button>Comprar</button>
+            </div>
+            <div class="collection">
+                <img src="path/to/beats-bass.jpg" alt="Novo Beats Bass">
+                <h3>Novo Beats Bass</h3>
+                <button>Comprar</button>
+            </div>
+        </section>
+        <section class="products">
+            <h2>Produtos em alta</h2>
+            <div class="product-list">
+                <div class="product">
+                    <img src="path/to/kswiss-shoe.jpg" alt="K-Swiss V8 Masculino">
+                    <h4>K-Swiss V8 - Masculino</h4>
+                    <p><s>$200</s> $100</p>
+                </div>
+                <!-- Repeat the above product block for each product -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Digital Store. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

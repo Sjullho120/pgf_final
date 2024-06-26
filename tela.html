@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c0392b;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        .nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-content {
+            padding: 40px;
+            text-align: left;
+        }
+        .carousel-content h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .carousel-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .carousel-content a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c0392b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .carousel-content a:hover {
+            background-color: #e74c3c;
+        }
+        .carousel-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .carousel-dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-dots span.active {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Digital Store</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar produto...">
+        </div>
+        <div class="nav">
+            <a href="#">Cadastre-se</a>
+            <a href="#">Entrar</a>
+        </div>
+    </header>
+
+    <div class="carousel">
+        <div class="carousel-content">
+            <h2>Melhores ofertas personalizadas</h2>
+            <p>Queima de estoque Nike <span>🔥</span></p>
+            <p>Consequat culpa exercitation mollit nisi exceptuer do do tempor laboris eiusmod irure consectetur.</p>
+            <a href="#">Ver Ofertas</a>
+        </div>
+        <img src="https://via.placeholder.com/1000x400?text=Imagem+1" class="active" alt="Nike">
+        <img src="https://via.placeholder.com/1000x400?text=Imagem+2" alt="Imagem 2">
+        <img src="https://via.placeholder.com/1000x400?text=Imagem+3" alt="Imagem 3">
+        <img src="https://via.placeholder.com/1000x400?text=Imagem+4" alt="Imagem 4">
+    </div>
+    <div class="carousel-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        const dots = document.querySelectorAll('.carousel-dots span');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            currentIndex = index;
+            images[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showImage(index);
+            });
+        });
+
+        setInterval(() => {
+            let nextIndex = (currentIndex + 1) % images.length;
+            showImage(nextIndex);
+        }, 3000);
+    </script>
+
+</body>
+</html>
